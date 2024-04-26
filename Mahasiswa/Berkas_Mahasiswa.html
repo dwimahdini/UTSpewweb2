@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendaftaran Individu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Berkas Pendaftaran Individu</h2>
+        <form>
+            <div class="form-group">
+                <label for="jenis">Jenis Pendaftaran:</label>
+                <input type="text" id="jenis" name="jenis" value="Individu" disabled>
+            </div>
+            <div class="form-group">
+                <label for="nama">Nama:</label>
+                <input type="text" id="nama" name="nama" value="Dwi Mahdini" disabled>
+            </div>
+            <div class="form-group">
+                <label for="nim">NIM:</label>
+                <input type="text" id="nim" name="nim" value="12250111298" disabled>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="dwimahdini12@gmail.com" disabled>
+            </div>
+            <div class="form-group">
+                <label for="judul">Judul Tugas Akhir:</label>
+                <input type="text" id="judul" name="judul" value="-" disabled>
+            </div>
+            <div class="form-group">
+                <label for="dosen1">Dosen Pembimbing 1:</label>
+                <input type="text" id="dosen1" name="dosen1" value="-" disabled>
+            </div>
+            <div class="form-group">
+                <label for="dosen2">Dosen Pembimbing 2:</label>
+                <input type="text" id="dosen2" name="dosen2" value="-" disabled>
+            </div>
+            <div class="form-group">
+                <label for="berkas">Berkas Mahasiswa:</label>
+                <a href="#" id="berkas">Tautan Berkas</a>
+            </div>
+            <div class="form-group">
+                <label for="catatan">Catatan Mahasiswa:</label>
+                <textarea id="catatan" name="catatan" disabled></textarea>
+            </div>
+            <div class="form-group">
+                <label>Status Berkas:</label>
+                <input type="checkbox" id="diterima" name="status" value="diterima">
+                <label for="diterima">Diterima</label>
+                <input type="checkbox" id="ditolak" name="status" value="ditolak">
+                <label for="ditolak">Ditolak</label>
+            </div>
+        </form>
+        <a href="Data_Mahasiswa.html" style="background-color: #007bff; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;">Submit Data</a>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Mahasiswa</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: lightblue;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    h2 {
+      color: black;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    button {
+      padding: 8px 16px;
+      margin-right: 8px;
+      cursor: pointer;
+      border-radius: 4px;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    button.detail {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    button.hapus {
+      background-color: #f44336;
+      color: white;
+    }
+
+    button.berkas {
+      background-color: blue;
+      color: white;
+    }
+
+    .tambah-btn {
+      margin-bottom: 20px;
+      background-color: green;
+      color: white;
+    }
+
+    .tambah-btn:hover, button.detail:hover, button.hapus:hover {
+      background-color: #0056b3;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <h2>Data Mahasiswa</h2>
+    <button class="tambah-btn" onclick="tambahMahasiswa()">Tambah Mahasiswa</button>
+    <table id="mahasiswaTable">
+      <thead>
+        <tr>
+          <th>Tanggal</th>
+          <th>Nama</th>
+          <th>NIM</th>
+          <th>Email</th>
+          <th>Status</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
+    </table>
+  </div>
+
+    <script>
+    // Ambil data yang dikirim dari halaman form.html
+    const newMahasiswaData = JSON.parse(localStorage.getItem("newMahasiswaData"));
+
+    // Ambil data mahasiswa yang sudah ada
+    let dataMahasiswa = JSON.parse(localStorage.getItem("dataMahasiswa")) || [];
+
+    // Jika ada data yang baru ditambahkan, tambahkan ke dataMahasiswa
+    if (newMahasiswaData) {
+      dataMahasiswa.push(newMahasiswaData);
+      localStorage.setItem("dataMahasiswa", JSON.stringify(dataMahasiswa));
+    }
+
+    const tableBody = document.querySelector("#mahasiswaTable tbody");
+
+    function renderMahasiswa() {
+      tableBody.innerHTML = "";
+      dataMahasiswa.forEach(mahasiswa => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${mahasiswa.tanggal}</td>
+          <td>${mahasiswa.nama}</td>
+          <td>${mahasiswa.nim}</td>
+          <td>${mahasiswa.email}</td>
+          <td>${mahasiswa.status}</td>
+          <td>
+            <button class="detail" onclick="showDetail('${mahasiswa.nama}')">Detail</button>
+            <button class="hapus" onclick="hapusMahasiswa('${mahasiswa.nama}')">Hapus</button>
+            <button class="berkas" onclick="lihatBerkas('${mahasiswa.nama}')">Berkas</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    function showDetail(nama) {
+      window.location.href = `Detail_Mahasiswa.html?nama=${nama}`;
+    }
+
+    function hapusMahasiswa(nama) {
+      const index = dataMahasiswa.findIndex(mahasiswa => mahasiswa.nama === nama);
+      if (index !== -1) {
+        dataMahasiswa.splice(index, 1);
+        localStorage.setItem("dataMahasiswa", JSON.stringify(dataMahasiswa));
+        renderMahasiswa();
+      }
+    }
+
+    function tambahMahasiswa() {
+      // Redirect ke halaman form.html untuk menambah data mahasiswa baru
+      window.location.href = "Tambah_Mahasiswa.html";
+    }
+
+    function lihatBerkas(nama) {
+    // Arahkan pengguna ke halaman Berkas_Mahasiswa.html dengan menggunakan window.location.href
+    window.location.href = `Berkas_Mahasiwa.html?nama=${nama}`;
+    }
+
+
+    renderMahasiswa();
+  </script>
+
+</body>
+</html>

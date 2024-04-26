@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>LOGOUT</h1>
+        <h5>Apakah Anda ingin Keluar?</h5>
+
+        <div class="buttons">
+            <button href="/Halaman/index.html" class="yes">Ya, Logout</button>
+            <button class="no">Batal</button>
+        </div>
+    </div>
+</body>
+</html>
+
+<style>
+       @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+    body {
+    background-color:lightblue;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+h1 {
+    color: #000;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+h5 {
+    margin-bottom: 50px;
+}
+
+
+.buttons {
+    display: flex;
+}
+
+button {
+    background-color: #fff;
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #333;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 10px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #1b1b1b;
+    color: #fff;
+}
+
+.yes {
+    background-color: #f00;
+    color: #fff;
+}
+
+.yes:hover {
+    background-color: #c00;
+}
+</style>

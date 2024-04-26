@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Input Data Dosen Penguji</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+    body {
+        background-color: lightblue;
+    }  
+    
+    .container {
+      width: 50%;
+      margin: 0 auto;
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+      background-color: aliceblue;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+      
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    
+    input[type="date"],
+    input[type="text"],
+    input[type="email"],
+    select {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      
+    }
+    
+    button {
+      padding: 10px 20px;
+      background-color: green;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: blue;
+    }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Input Data Dosen Penguji</h2>
+    <form id="dosenForm">
+      <div class="form-group">
+        <label for="nama">Nama Dosen:</label>
+        <input type="text" id="nama" name="nama" required>
+      </div>
+      <div class="form-group">
+        <label for="nidn">NIDN:</label>
+        <input type="text" id="nidn" name="nidn" required>
+      </div>
+      <div class="form-group">
+        <label for="jenisKelamin">Jenis Kelamin:</label>
+        <select id="jenisKelamin" name="jenisKelamin">
+          <option value="laki-laki">Laki-laki</option>
+          <option value="perempuan">Perempuan</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="keahlian">Keahlian:</label>
+        <input type="text" id="keahlian" name="keahlian" required>
+      </div>
+      <div class="form-group">
+        <label for="kuota">Kuota:</label>
+        <input type="number" id="kuota" name="kuota" required>
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("dosenForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const dosenData = {};
+      formData.forEach((value, key) => {
+        dosenData[key] = value;
+      });
+      sendDataToOtherClass(dosenData);
+    });
+
+    function sendDataToOtherClass(data) {
+      localStorage.setItem("newDosenData", JSON.stringify(data));
+      window.location.href = "Data_Pembimbing.html";
+    }
+  </script>
+</body>
+</html>

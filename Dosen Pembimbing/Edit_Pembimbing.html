@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Data Dosen Pembimbing</title>
+</head>
+<body>
+  <script>
+    // Ambil data dosen dari local storage
+    let dataDosen = JSON.parse(localStorage.getItem("dataDosen")) || [];
+
+    function editDosen(nama) {
+      // Cari data dosen berdasarkan nama
+      const dosenIndex = dataDosen.findIndex(dosen => dosen.nama === nama);
+      if (dosenIndex !== -1) {
+        const dosen = dataDosen[dosenIndex];
+        const newNama = prompt("Masukkan nama baru:", dosen.nama);
+        const newNIDN = prompt("Masukkan NIDN baru:", dosen.nidn);
+        const newJenisKelamin = prompt("Masukkan jenis kelamin baru (laki-laki / perempuan):", dosen.jenisKelamin);
+        const newKeahlian = prompt("Masukkan keahlian baru:", dosen.keahlian);
+        const newKuota = prompt("Masukkan kuota baru:", dosen.kuota);
+
+        // Perbarui data dosen
+        if (newNama && newNIDN && newJenisKelamin && newKeahlian && newKuota) {
+          dataDosen[dosenIndex] = {
+            nama: newNama,
+            nidn: newNIDN,
+            jenisKelamin: newJenisKelamin,
+            keahlian: newKeahlian,
+            kuota: newKuota
+          };
+
+          // Simpan kembali data dosen yang sudah diperbarui ke local storage
+          localStorage.setItem("dataDosen", JSON.stringify(dataDosen));
+
+          // Tampilkan pesan sukses
+          alert("Data dosen berhasil diperbarui!");
+
+          // Render kembali data dosen untuk memperbarui tampilan tabel
+          renderDosen();
+        } else {
+          // Tampilkan pesan error jika input kosong atau batal
+          alert("Input tidak boleh kosong!");
+        }
+      } else {
+        // Tampilkan pesan error jika data dosen tidak ditemukan
+        alert("Data dosen tidak ditemukan!");
+      }
+    }
+  </script>
+</body>
+</html>

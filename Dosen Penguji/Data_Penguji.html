@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Dosen Penguji</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: lightblue;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+
+    h2 {
+      color: black;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    button {
+      padding: 8px 16px;
+      margin-right: 8px;
+      cursor: pointer;
+      border-radius: 4px;
+      border: none;
+      transition: background-color 0.3s ease;
+    }
+
+    button.detail {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    button.hapus {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .tambah-btn {
+      margin-bottom: 20px;
+      background-color: green;
+      color: white;
+    }
+
+    .tambah-btn:hover, button.detail:hover, button.hapus:hover {
+      background-color: #0056b3;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <h2>Data Dosen Penguji</h2>
+    <button class="tambah-btn" onclick="tambahDosen()">Tambah</button>
+    <table id="dosenTable">
+      <thead>
+        <tr>
+          <th>Nama Dosen</th>
+          <th>NIDN</th>
+          <th>Jenis Kelamin</th>
+          <th>Keahlian</th>
+          <th>Kuota</th>
+          <th>Tabel Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data Dosen akan ditambahkan secara dinamis di sini -->
+      </tbody>
+    </table>
+  </div>
+
+  <script>
+    // Ambil data dosen dari local storage
+    const newDosenData = JSON.parse(localStorage.getItem("newDosenData")) || [];
+
+    // Ambil tabel dari HTML
+    const tableBody = document.querySelector("#dosenTable tbody");
+
+    const dataDosen = [
+  {
+    nama: "Pembimbing 1",
+    nidn: "1234567890",
+    jenisKelamin: "Laki-laki",
+    keahlian: "Sistem Informasi",
+    kuota: 3
+  },
+  {
+    nama: "Pembimbing 2",
+    nidn: "0987654321",
+    jenisKelamin: "Perempuan",
+    keahlian: "Jaringan Komputer",
+    kuota: 5
+  },
+  {
+    nama: "Pembimbing 3",
+    nidn: "1357924680",
+    jenisKelamin: "Laki-laki",
+    keahlian: "Kecerdasan Buatan",
+    kuota: 4
+  }
+];
+localStorage.setItem("dataDosen", JSON.stringify(dataDosen));
+
+    // Fungsi untuk menampilkan data dosen dalam tabel
+    function renderDosen() {
+      tableBody.innerHTML = "";
+      dataDosen.forEach(dosen => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${dosen.nama}</td>
+          <td>${dosen.nidn}</td>
+          <td>${dosen.jenisKelamin}</td>
+          <td>${dosen.keahlian}</td>
+          <td>${dosen.kuota}</td>
+          <td>
+            <button class="detail" onclick="showDetail('${dosen.nama}')">Detail</button>
+            <button class="hapus" onclick="hapusDosen('${dosen.nama}')">Hapus</button>
+            <button class="edit" onclick="editDosen('${dosen.nama}')">Edit</button>
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
+
+    // Fungsi untuk menampilkan detail dosen
+    function showDetail(nama) {
+      // Implementasi detail dosen sesuai kebutuhan Anda
+      alert(`Detail Dosen: ${nama}`);
+    }
+
+    // Fungsi untuk menghapus dosen dari tabel
+    function hapusDosen(nama) {
+      const index = dataDosen.findIndex(dosen => dosen.nama === nama);
+      if (index !== -1) {
+        dataDosen.splice(index, 1);
+        localStorage.setItem("dataDosen", JSON.stringify(dataDosen));
+        renderDosen();
+      }
+    }
+
+    // Fungsi untuk mengedit data dosen
+    function editDosen(nama) {
+      // Implementasi edit dosen sesuai kebutuhan Anda
+      alert(`Edit Dosen: ${nama}`);
+    }
+
+    // Fungsi untuk menuju halaman input data dosen (file1)
+    function tambahDosen() {
+      window.location.href = "Tambah_Penguji.html";
+    }
+
+    // Render data dosen saat halaman dimuat
+    renderDosen();
+  </script>
+</body>
+</html>

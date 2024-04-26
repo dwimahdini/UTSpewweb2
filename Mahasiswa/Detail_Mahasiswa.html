@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detail Mahasiswa</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: lightblue;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .container {
+      width: 80%;
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+
+    h2 {
+      color: black;
+      margin-bottom: 20px;
+    }
+
+    #detailMahasiswa p {
+      margin: 10px 0;
+      color: #555;
+    }
+
+    #detailMahasiswa p strong {
+      font-weight: bold;
+      margin-right: 5px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Detail Mahasiswa</h2>
+    <div id="detailMahasiswa">
+      <!-- Detail Mahasiswa akan ditampilkan di sini -->
+    </div>
+  </div>
+
+
+  <script>
+    // Ambil parameter nama mahasiswa dari URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const namaMahasiswa = urlParams.get('nama');
+
+    // Cari data mahasiswa berdasarkan nama dari local storage
+    const dataMahasiswa = JSON.parse(localStorage.getItem("dataMahasiswa")) || [];
+    const mahasiswa = dataMahasiswa.find(mahasiswa => mahasiswa.nama === namaMahasiswa);
+
+    // Tampilkan detail mahasiswa
+    if (mahasiswa) {
+      document.getElementById("detailMahasiswa").innerHTML = `
+        <p><strong>Nama:</strong> ${mahasiswa.nama}</p>
+        <p><strong>Tanggal:</strong> ${mahasiswa.tanggal}</p>
+        <p><strong>NIM:</strong> ${mahasiswa.nim}</p>
+        <p><strong>Email:</strong> ${mahasiswa.email}</p>
+        <p><strong>Status:</strong> ${mahasiswa.status}</p>
+      `;
+    } else {
+      document.getElementById("detailMahasiswa").innerHTML = "<p>Data mahasiswa tidak ditemukan.</p>";
+    }
+  </script>
+</body>
+</html>
